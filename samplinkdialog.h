@@ -9,14 +9,18 @@ class SampLinkDialog;
 
 class SampLinkDialog : public QDialog
 {
-    Q_OBJECT
+	Q_OBJECT
 
-public:
-    explicit SampLinkDialog(QWidget *parent = nullptr);
-    ~SampLinkDialog();
+	public:
+		explicit SampLinkDialog(QWidget *parent = nullptr);
+		~SampLinkDialog();
+		bool createShortcut(QString name, QString targetpath, QString args);
 
-private:
-    Ui::SampLinkDialog *ui;
+	public slots:
+		void accept();
+
+	private:
+		Ui::SampLinkDialog *ui;
 };
 
 #endif // SAMPLINKDIALOG_H

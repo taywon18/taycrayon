@@ -1,2 +1,12 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>sharpener.png</file>
+        <file>person.png</file>
+        <file>keyboard.png</file>
+        <file>book.png</file>
+        <file>gear.png</file>
+        <file>library.png</file>
+        <file>shortcut.png</file>
+        <file>reload.png</file>
+    </qresource>
+</RCC>

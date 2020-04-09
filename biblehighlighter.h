@@ -2,11 +2,29 @@
 #define HIGHLIGHTER_H
 
 #include <QObject>
+#include <QSyntaxHighlighter>
+#include <QRegularExpression>
 
-class Highlighter : public QSyntaxHighlighter
+class QTextDocument;
+
+class BibleHighlighter : public QSyntaxHighlighter
 {
 public:
-    Highlighter();
+    BibleHighlighter(QTextDocument *parent);
+    void highlightBlock(const QString &text);
+
+private:
+    struct HighlightingRule
+    {
+        QRegularExpression pattern;
+        QTextCharFormat format;
+
+        inline HighlightingRule(QRegularExpression p, QTextCharFormat f){
+            pattern = p; format = f;
+        }
+    };
+    QList<HighlightingRule> highlightingRules;
+
 };
 
 #endif // HIGHLIGHTER_H

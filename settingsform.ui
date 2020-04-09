@@ -1,8 +1,5 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>SettingsForm</class>
  <widget class="QWidget" name="SettingsForm">
   <property name="geometry">
@@ -16,7 +13,20 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QCheckBox" name="startOnStartup">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>611</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Démarrer avec windows</string>
+   </property>
+  </widget>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

@@ -1,22 +1,532 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>KeybindEditor</class>
  <widget class="QWidget" name="KeybindEditor">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>1046</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Keybind</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="res/res.qrc">
+    <normaloff>:/keyboard.png</normaloff>:/keyboard.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_7">
+   <item row="0" column="0">
+    <widget class="QKeySequenceEdit" name="keySequenceEdit"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="cleanButton">
+     <property name="text">
+      <string>Remettre à zero</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Conditions</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="mayBeUsedWhenPed">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utilisable à pied</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="mayBeUsedInCar">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utilisable en voiture</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="mayBeUsedInCycle">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utilisable en moto</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="mayBeUsedInChoppa">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utilisable en hélico</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="mayBeUsedInBoat">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utilisable en bateau</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QGroupBox" name="isLiveConditionEnabled">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Vie</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QComboBox" name="LiveCondition">
+           <item>
+            <property name="text">
+             <string>Egale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pas égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure ou égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure ou égale</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="LiveAmount">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QGroupBox" name="isArmorConditionEnabled">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Armure</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="ArmorAmount">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QComboBox" name="ArmorCondition">
+           <item>
+            <property name="text">
+             <string>Egale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pas égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure ou égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure ou égale</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QGroupBox" name="isCarLiveConditionEnabled">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Vie du véhicule</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QComboBox" name="CarLiveCondition">
+           <item>
+            <property name="text">
+             <string>Egale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pas égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inférieure ou égale</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Supérieure ou égale</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="LiveCarAmount">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="4" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="title">
+      <string>Possibilités</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QListWidget" name="possibilitiesLW"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QPlainTextEdit" name="ContentTE">
+     <property name="placeholderText">
+      <string>Texte à binder</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QLineEdit" name="descriptionLE">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Description du bind</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QPushButton" name="helpButton">
+     <property name="text">
+      <string>Aide (F1)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" rowspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Paramètres du bind</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="openChatAtLineBeginLE">
+        <property name="text">
+         <string>Ouvrir le chat à chaque début de ligne</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="SeekAtEndCB">
+        <property name="text">
+         <string>Après bindage, remise du curseur à la fin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="sendAtEndlCB">
+        <property name="text">
+         <string>Envoyer le message à chaque fin de ligne</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QComboBox" name="whenUsableCB">
+        <item>
+         <property name="text">
+          <string>Utilisable quand chat fermé</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Utilisable quand chat ouvert</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Utilisable quand chat ouvert et fermé</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cleanBeforeCB">
+        <property name="text">
+         <string>Effacer le chat avant de binder</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="noCapsLockCB">
+        <property name="text">
+         <string>Si le clavier est en majuscule, le mettre en minuscule</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="seekAtBeginCB">
+        <property name="text">
+         <string>Remettre le curseur au début du chat avant de binder</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="notSendIfMissingParameter">
+        <property name="text">
+         <string>Ne pas envoyer si un paramètre est manquant</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
- <connections/>
+ <resources>
+  <include location="res/res.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>isLiveConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LiveCondition</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>600</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>637</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLiveConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LiveAmount</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>674</x>
+     <y>214</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>738</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isArmorConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ArmorCondition</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>612</x>
+     <y>274</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isArmorConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ArmorAmount</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>678</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>728</x>
+     <y>300</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isCarLiveConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CarLiveCondition</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>614</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>641</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isCarLiveConditionEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LiveCarAmount</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>676</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>736</x>
+     <y>367</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cleanButton</sender>
+   <signal>clicked()</signal>
+   <receiver>keySequenceEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>187</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>113</x>
+     <y>16</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

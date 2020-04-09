@@ -1,24 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MainWindow</string>
+  <property name="windowTitle">
+   <string>TayCrayon</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <property name="windowIcon">
+   <iconset resource="res/res.qrc">
+    <normaloff>:/sharpener.png</normaloff>:/sharpener.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="characterSetButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Définition des personnages (F1)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/person.png</normaloff>:/person.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BibleButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bible documentaire (F2)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/book.png</normaloff>:/book.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="FillerButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Générateur de champ (F3)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/gear.png</normaloff>:/gear.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="LogButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Visualiser les logs (F4)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/library.png</normaloff>:/library.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F4</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BindButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Gérer les binds (F5)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/keyboard.png</normaloff>:/keyboard.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F5</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ShortcutButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Créer un raccourci (F6)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/shortcut.png</normaloff>:/shortcut.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F6</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ReconnectButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Se reconnecter au dernier serveur (F7)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/reload.png</normaloff>:/reload.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>F7</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuA_propos">
+    <property name="title">
+     <string>A propos</string>
+    </property>
+    <addaction name="TayformerAction"/>
+    <addaction name="qtAction"/>
+   </widget>
+   <addaction name="menuA_propos"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="TayformerAction">
+   <property name="text">
+    <string>... du TayCrayon</string>
+   </property>
+  </action>
+  <action name="qtAction">
+   <property name="text">
+    <string>... de Qt</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
- <resources/>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res/res.qrc"/>
+ </resources>
  <connections/>
 </ui>
