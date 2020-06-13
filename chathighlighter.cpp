@@ -93,6 +93,7 @@ void ChatHighlighter::regenerate()
     radio.setForeground(QBrush(QColor(99,159,255)));
     highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\[Radio\\] (.+)$"), radio));
     highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\[Radio loc\\] (.+)$"), radio));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\(\\( Demande (.+)$"), radio));
 
 
     QTextCharFormat admin = defaultFormat;
@@ -104,11 +105,20 @@ void ChatHighlighter::regenerate()
     tel.setForeground(QBrush(QColor(240,230,140)));
     highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\[SMS (.+)$"), tel));
     highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\[Appel (.+)$"), tel));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\[Téléphone\\] (.+)$"), tel));
+
+	QTextCharFormat ooc = defaultFormat;
+	ooc.setForeground(QBrush(QColor(200,200,200)));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\(\\( \\[[0-9]+\\] (.+)$"), ooc));
+
 
 
     QTextCharFormat me = defaultFormat;
     me.setForeground(QBrush(QColor(194,162,218)));
     highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] \\* (.+)$"), me));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] Démarrage: (.+)$"), me));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] Utilisez (.+)$"), me));
+	highlightingRules.append(HighlightingRule(QRegularExpression("^\\[[0-9]+:[0-9]+:[0-9]+\\] Vous (.+)$"), me));
     _mutex.unlock();
 }
 

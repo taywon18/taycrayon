@@ -45,15 +45,12 @@ QString GenerationEnvironment::parse(QString name, QString format)
             return _char->profession();
         else if(name == "matricule")
             return _char->matricle();
-        else if(name == "P")
+		else if(name == "p" || name == "P")
         {
             QString firstname = _char->firstName();
             if(!firstname.isEmpty())
                 return firstname.at(0).toUpper();
         }
-
-
-
 
         return "";
     }
@@ -65,15 +62,15 @@ QString GenerationEnvironment::parse(QString name, QString format)
 
         if(name == "dd")
             return now.toString("dd");
-        else if(name == "mm")
-            return now.toString("mm");
+		else if(name == "month" || name == "mm")
+			return now.toString("month");
         else if(name == "yy")
             return now.toString("yy");
         else if(name == "yyyy")
             return now.toString("yyyy");
         else if(name == "hh")
             return now.toString("hh");
-        else if(name == "mm")
+		else if(name == "minute")
             return now.toString("mm");
         else if(name == "ss")
             return now.toString("ss");

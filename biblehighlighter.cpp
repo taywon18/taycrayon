@@ -19,7 +19,9 @@ BibleHighlighter::BibleHighlighter(QTextDocument *parent)
 
     highlightingRules.append(HighlightingRule(QRegularExpression("\\[[/]?[.a-zA-Z0-9éèà\"=:#; /\\()-\\?]+\\]"), bbcodeformat));
     highlightingRules.append(HighlightingRule(QRegularExpression("<[/]?[.a-zA-Z0-9%\"=:#; /\\()-\\?]+>"), bbcodeformat));
-	highlightingRules.append(HighlightingRule(QRegularExpression("\\$\\{([ a-zA-Z0-9\\.,é]+):?([a-zA-Z0-9\\.,éèà\\(\\)]+)?\\}"), tmplformat));
+	//highlightingRules.append(HighlightingRule(QRegularExpression("\\$\\{([ a-zA-Z0-9\\.,é]+):?([a-zA-Z0-9\\.,éèà\\(\\)]+)?\\}"), tmplformat));
+	highlightingRules.append(HighlightingRule(QRegularExpression("\\$\\{([ a-zA-Z0-9\\.]+):?((?:[^}])+)?\\}"), tmplformat));
+
 	highlightingRules.append(HighlightingRule(QRegularExpression("£{([a-zA-Z0-9]+)\\((?:([.?=\\-&a-zA-Z0-9_:\\/\\-\\(\\)]+),?)*\\)}"), actionformat));
 
 }

@@ -8,8 +8,10 @@
 #include <QRegularExpression>
 
 Document::Document()
-	: _fieldSelector("\\$\\{([ a-zA-Z0-9\\.]+):?([ a-zA-Z0-9\\.,éè\\(\\)]+)?\\}")
-    , _actionSelector("£{([a-zA-Z0-9]+)\\((?:([.?=\\-&a-zA-Z0-9_:\\/\\-]+),?)*\\)}")
+	//: _fieldSelector("\\$\\{([ a-zA-Z0-9\\.]+):?([ a-zA-Z0-9\\.,éè\\(\\)/]+)?\\}")
+	//: _fieldSelector("\\$\\{([ a-zA-Z0-9\\.]+):?((?:[ a-zA-Z0-9\\.,éè\\(\\)/])+)?\\}")
+	: _fieldSelector("\\$\\{([ a-zA-Z0-9\\.]+)(?::((?:[^\\}])+))?\\}")
+	, _actionSelector("£{([a-zA-Z0-9]+)\\((?:([.?=\\-&a-zA-Z0-9_:\\/\\-]+),?)*\\)}")
 {
 
 }
@@ -73,7 +75,7 @@ QString Document::generate(GenerationEnvironment env, QMap<QString, QString> fie
 
             QString r;
             if(fields.contains(caps[1])){
-                r = fields[caps[1]];
+				r = fields[caps[1]];
             }
             else {
                 if(caps.length()-2)

@@ -104,7 +104,15 @@ void FormFiller::select(QFileInfo fi)
     for (i = fields.begin(); i != fields.end(); ++i)
     {
         QString key = i.key();
-        QStringList formats = i.value().toLower().split(",", QString::SkipEmptyParts);
+		QRegularExpression exp("(?:\\\\.|[^,])+");
+		QStringList formats;
+		QRegularExpressionMatchIterator mit = exp.globalMatch(i.value());
+		while (mit.hasNext()) {
+			QRegularExpressionMatch match = mit.next();
+			formats.append(match.captured().replace("\\,", ","));
+		}
+
+		qDebug() << formats;
         QString value = env.parse(i.key(), i.value());
 
         ui->FormsTW->setItem(row, 0, new QTableWidgetItem( key, Qt::DisplayRole));
@@ -119,7 +127,7 @@ void FormFiller::select(QFileInfo fi)
             ui->FormsTW->item(row, 0)->setFont(f);
         }
 
-        if(formats.contains("multiline"))
+		if(formats.contains("multiline", Qt::CaseInsensitive))
         {
             QTextEdit *edit = new QTextEdit(this);
             edit->setText(value);
@@ -143,6 +151,43 @@ void FormFiller::select(QFileInfo fi)
                 });
             }
         }
+		else if(int choiceindex = formats.indexOf("choicefile", Qt::CaseInsensitive) != -1)
+		{
+			QString path = Utils::GetSampDirectoryPath() + "/" + formats[choiceindex];
+			if(!QFile::exists(path))
+			{
+				ui->FormsTW->setItem(row, 1, new QTableWidgetItem("Impossible de trouver le fichier " + path + "."));
+			}
+			else
+			{
+				QFile f(path);
+				if (!f.open(QFile::ReadOnly | QFile::Text))
+				{
+					ui->FormsTW->setItem(row, 1, new QTableWidgetItem("Impossible d'ouvrir le fichier " + path + "."));
+				}
+				else {
+					QComboBox* box = new QComboBox(this);
+					ui->FormsTW->setRowHeight(row, 20);
+					ui->FormsTW->setCellWidget(row, 1, box);
+
+					QTextStream in(&f);
+					QString str;
+					while (in.readLineInto(&str))
+						box->addItem(str, str);
+				}
+
+
+			}
+		}
+		else if(int choiceindex = formats.indexOf("choice") != -1)
+		{
+			QComboBox* box = new QComboBox(this);
+			for(int i = choiceindex; i < formats.length(); i++)
+				box->addItem(formats[i], formats[i]);
+			ui->FormsTW->setRowHeight(row, 20);
+			ui->FormsTW->setCellWidget(row, 1, box);
+
+		}
         else
         {
             QLineEdit *edit = new QLineEdit(this);
@@ -194,6 +239,8 @@ QString FormFiller::generate()
             values[key] = le->text();
         else if(QTextEdit *te = qobject_cast<QTextEdit *>(w))
             values[key] = te->toPlainText();
+		else if(QComboBox* cb = qobject_cast<QComboBox *>(w))
+			values[key] = cb->currentData().toString();
     }
 
     int val = ui->CharacterCB->currentIndex();
