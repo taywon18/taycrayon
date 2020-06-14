@@ -11,6 +11,7 @@
 #include "keybindlist.h"
 #include "bindcontainer.h"
 #include "samplinkdialog.h"
+#include "feedercontrol.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,7 +30,8 @@ public:
 public slots:
     void openCharacterSettings();
     void openBible();
-    void openFiller();
+	void openFiller();
+	void openFeeder();
     void openLog();
     void openBinds();
 	void openLinks();
@@ -48,6 +50,7 @@ private:
     void createConnections();
     Ui::MainWindow *ui;
     CharacterSettings* _charsettings;
+	FeederControl* _feeder;
     BibleManager* _bible;
     CharacterCollection _characters;
     FormFiller* _filler;

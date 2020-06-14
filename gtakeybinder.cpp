@@ -549,11 +549,11 @@ bool GtaKeybinder::match(QKeySequence seq, int nCode, bool ctrlpressed, bool shi
     return seq[0] == keycodeWithModifier;
 }
 
-HANDLE GtaKeybinder::getOpenedGtaProcess()
+HANDLE GtaKeybinder::getOpenedGtaProcess(bool foregroundOnly)
 {
     HANDLE ret = 0;
 
-    HWND gtahwnd = GetSampForegroundWindows();
+	HWND gtahwnd = foregroundOnly ? GetSampForegroundWindows() : GetSampWindows();
     DWORD gtapid = 0;
     DWORD gtathread = GetWindowThreadProcessId( gtahwnd, &gtapid );
     if(!gtapid)
@@ -587,7 +587,21 @@ BindEnvironment GtaKeybinder::getBindEnvironment(HANDLE h)
     DWORD DrivingState;
     ReadProcessMemory(h, (LPCVOID)address, &DrivingState, sizeof(DrivingState), 0);
 
-    if(DrivingState != 50)
+	address = Player + 0x14;
+	unsigned int PlayerMatrix;
+	ReadProcessMemory(h, (LPCVOID)address, &PlayerMatrix, sizeof(PlayerMatrix), 0);
+
+	float PlayerPosX, PlayerPosY, PlayerPosZ, PlayerRotZ;
+	ReadProcessMemory(h, (void*)(PlayerMatrix + 0x30), (void*)&PlayerPosX, sizeof(float), NULL);
+	ReadProcessMemory(h, (void*)(PlayerMatrix + 0x34), (void*)&PlayerPosY, sizeof(float), NULL);
+	ReadProcessMemory(h, (void*)(PlayerMatrix + 0x38), (void*)&PlayerPosZ, sizeof(float), NULL);
+	ReadProcessMemory(h, (void*)(Player + 0x558), (void*)&PlayerRotZ, sizeof(float), NULL);
+
+	ret.posX = PlayerPosX;
+	ret.posY = PlayerPosY;
+	ret.posZ = PlayerPosZ;
+
+	if(DrivingState != 50)
         return ret;
 
     address = Player + 0x58C;
@@ -606,6 +620,18 @@ BindEnvironment GtaKeybinder::getBindEnvironment(HANDLE h)
 
 
     return ret;
+}
+
+HWND GtaKeybinder::GetSampWindows()
+{
+	HWND windobe = FindWindow(
+				NULL,
+				L"GTA:SA:MP"
+			  );
+	if(windobe)
+			return windobe;
+	else
+			return nullptr;
 }
 
 HWND GtaKeybinder::GetSampForegroundWindows()

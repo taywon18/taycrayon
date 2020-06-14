@@ -34,6 +34,9 @@ struct BindEnvironment{
     int live = 100;
     int armor = 100;
     int vehLive = -1;
+	float posX=0.0f, posY=0.0f, posZ=0.0f, rotZ=0.0f;
+	int currentVehType=0;
+	int passengerCount=0;
 };
 
 struct BindRequierments{

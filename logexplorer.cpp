@@ -192,18 +192,36 @@ void LogExplorer::copySelectedText()
 
 void LogExplorer::onChatNewLine(QString str)
 {
-	QRegularExpression regexp("^\\[[0-9]+:[0-9]+:[0-9]+\\] Connecting to ([0-9\\.:]+)\\.\\.\\.$");
-	auto r = regexp.match(str);
-	if(!r.hasMatch())
-		return;
+	QSettings set;
 
+	QRegularExpression regexp_server("^\\[[0-9]+:[0-9]+:[0-9]+\\] Connecting to ([0-9\\.:]+)\\.\\.\\.$");
+	auto r = regexp_server.match(str);
+	if(r.hasMatch())
+	{
+		QString address = r.capturedTexts()[1];
+		if(address == ":7777")
+			return;
 
-	QSettings set(Utils::GetConfigPath(), QSettings::IniFormat);
-	QString address = r.capturedTexts()[1];
-	if(address == ":7777")
-		return;
+		set.setValue("lastAddress", address);
+		set.setValue("lastPseudo", QVariant());
+		set.setValue("lastOccupation", QVariant());
+	}
 
-	set.setValue("lastAddress", address);
+	QRegularExpression regexp_name("^\\[[0-9]+:[0-9]+:[0-9]+\\] Vous êtes maintenant loggé avec le personnage ([a-zA-Z\\_]+) \\!$");
+	r = regexp_name.match(str);
+	if(r.hasMatch())
+	{
+		QString pseudo = r.capturedTexts()[1];
+		set.setValue("lastPseudo", pseudo);
+	}
+
+	QRegularExpression regexp_occupation("^\\[[0-9]+:[0-9]+:[0-9]+\\] Vous venez de modifier votre occupation: \\{FFFFFF\\}(.+)$");
+	r = regexp_occupation.match(str);
+	if(r.hasMatch())
+	{
+		QString occ = r.capturedTexts()[1];
+		set.setValue("lastOccupation", occ);
+	}
 }
 
 void LogExplorer::keyPressEvent(QKeyEvent *event)

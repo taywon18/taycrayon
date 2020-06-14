@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _bible = new BibleManager(_filler, nullptr);
     _log = new LogExplorer(nullptr);
     _bindsettings = new KeybindList(_binds, nullptr);
+	_feeder = new FeederControl(this);
 
 
     createConnections();
@@ -50,6 +51,8 @@ void MainWindow::createConnections()
     connect(ui->BindButton, &QAbstractButton::clicked, this, &MainWindow::openBinds);
 	connect(ui->ShortcutButton, &QAbstractButton::clicked, this, &MainWindow::openLinks);
 	connect(ui->ReconnectButton, &QAbstractButton::clicked, this, &MainWindow::startLastAddress);
+	connect(ui->FeederButton, &QAbstractButton::clicked, this, &MainWindow::openFeeder);
+
 
     connect(_charsettings, &CharacterSettings::shouldSave, _filler, &FormFiller::reloadChars);
     connect(_charsettings, &CharacterSettings::shouldSave, this, &MainWindow::saveCharacters);
@@ -75,7 +78,12 @@ void MainWindow::openBible()
 
 void MainWindow::openFiller()
 {
-    _filler->show();
+	_filler->show();
+}
+
+void MainWindow::openFeeder()
+{
+	_feeder->show();
 }
 
 void MainWindow::openLog()

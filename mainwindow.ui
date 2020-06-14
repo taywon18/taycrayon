@@ -158,13 +158,13 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
+      <y>490</y>
       <width>1001</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Créer un raccourci (F6)</string>
+     <string>Créer un raccourci (F7)</string>
     </property>
     <property name="icon">
      <iconset resource="res/res.qrc">
@@ -177,20 +177,20 @@
      </size>
     </property>
     <property name="shortcut">
-     <string>F6</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="ReconnectButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>490</y>
+      <y>570</y>
       <width>1001</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Se reconnecter au dernier serveur (F7)</string>
+     <string>Se reconnecter au dernier serveur (F8)</string>
     </property>
     <property name="icon">
      <iconset resource="res/res.qrc">
@@ -203,7 +203,33 @@
      </size>
     </property>
     <property name="shortcut">
-     <string>F7</string>
+     <string>F8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="FeederButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>1001</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Feeder (F6)</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res/res.qrc">
+      <normaloff>:/keyboard.png</normaloff>:/keyboard.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>64</width>
+      <height>64</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string/>
     </property>
    </widget>
   </widget>

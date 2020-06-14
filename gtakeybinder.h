@@ -44,8 +44,9 @@ public:
     bool match(QKeySequence seq, int nCode, bool ctrlpressed, bool majpressed = false, bool altpressed = false);
 
 
-    HANDLE getOpenedGtaProcess();
+	HANDLE getOpenedGtaProcess(bool foregroundOnly = true);
     BindEnvironment getBindEnvironment(HANDLE gtaProcess);
+
 
 
     static GtaKeybinder& instance();
@@ -64,6 +65,7 @@ private:
     bool keybind(BindPossibility bp, HANDLE gtaProcess = nullptr);
     QList<QPair<QString, QString>> replace(QSet<QString> keywords, HANDLE gtaProcess, bool* missing = nullptr);
     HWND GetSampForegroundWindows();
+	HWND GetSampWindows();
     NeighboorFinder _finder;
     BindContainer* _binds = nullptr;
     bool _active = true;
